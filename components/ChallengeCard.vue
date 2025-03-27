@@ -1,7 +1,7 @@
 <template>
     <v-card 
       :title="props.challenge.title"
-      :subtitle="props.challenge.points"
+      :subtitle="formattedPoints"
       class="my-3"
     >
       <v-card-actions>
@@ -14,6 +14,11 @@
 const props = defineProps({
   challenge: Object
 });
+
+const formattedPoints = computed(() => {
+  const plural = (props.challenge.points != 1) ? 's' : '';
+  return `${props.challenge.points} point${plural}`
+})
 </script>
 
 <style lang="">
