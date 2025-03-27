@@ -15,6 +15,8 @@ const props = defineProps({
   challenge: Object
 });
 
+// TODO: change card colour when photo uploaded
+
 const formattedPoints = computed(() => {
   const plural = (props.challenge.points != 1) ? 's' : '';
   return `${props.challenge.points} point${plural}`
