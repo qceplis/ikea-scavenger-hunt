@@ -5,7 +5,6 @@ export default defineNuxtConfig({
   modules: [
     'vuetify-nuxt-module',
     '@pinia/nuxt',
-    '@nuxtjs/supabase'
   ],
   css: ['@/assets/main.css'],
 })
