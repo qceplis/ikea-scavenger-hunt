@@ -1,8 +1,8 @@
 <template>
   <v-container>
-    <h1>{{ props.name }}</h1>
+    <h1>{{ props.category.name }}</h1>
       <ChallengeCard
-        v-for="challenge in props.challenges"
+        v-for="challenge in props.category.challenges"
           :challenge="challenge"
           :key="challenge.id"
       />
@@ -13,8 +13,7 @@
 import { ChallengeCard } from '#components';
 
 const props = defineProps({
-  name: String,
-  challenges: Object
+  category: Object,
 });
 
 </script>
