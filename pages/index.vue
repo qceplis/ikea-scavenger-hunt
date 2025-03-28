@@ -1,11 +1,8 @@
 <template>
-  <div>
-    <TeamSelection />
-    <Challenges />
-  </div>
+  <TeamSelection />
 </template>
 
 <script setup>
-  import { Challenges, TeamSelection } from '#components'
+  import { TeamSelection } from '#components'
 
 </script>
