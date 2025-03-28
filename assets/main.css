@@ -24,6 +24,13 @@ body {
     box-sizing: border-box;
 }
 
+v-card {
+    background-color: #FBDA0C;
+}
+h1 {
+    color: #FBDA0C;
+}
+
 html,
 body,
 #__next {

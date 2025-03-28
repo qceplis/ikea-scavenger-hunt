@@ -7,7 +7,7 @@
       <v-card-actions>
         <v-file-input 
           v-model="file"
-          label="Upload a photo"
+          label="Choose a photo"
           accept="image/*"
           prepend-icon="mdi-camera"
           :disabled="uploading"
@@ -49,7 +49,7 @@ const formattedPoints = computed(() => {
   return `${props.challenge.points} point${plural}`
 })
 
-const bucketName = 'photo-submissions'
+
 const uploadPhoto = async () => {
   if (!file.value) return;
   
@@ -83,6 +83,7 @@ const uploadPhoto = async () => {
 
 <style scoped>
   .v-card {
-  max-width: 95vw;
+    max-width: 95vw;
+    background-color: #FBDA0C;
 }
 </style>

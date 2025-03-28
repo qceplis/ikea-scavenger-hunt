@@ -18,6 +18,8 @@ const props = defineProps({
 
 </script>
 
-<style>
-  
+<style scoped>
+  h1 {
+    color: #FBDA0C;
+  }
 </style>
