@@ -4,6 +4,8 @@
       :subtitle="formattedPoints"
       class="my-3"
     >
+      <!-- <v-icon v-if="isUploaded" icon="check_box" end />
+      <v-icon v-else="isUploaded" icon="check_box_outline_blank" end /> -->
       <v-card-actions>
         <v-file-input 
           v-model="file"
@@ -32,12 +34,13 @@
 
 <script setup>
 import { supabase } from '@/lib/supabase'
+import { useTeamStore } from '@/stores/team'
 
 const props = defineProps({
   challenge: Object
 });
 
-// TODO: change card colour when photo uploaded
+const teamStore = useTeamStore()
 
 const file = ref(null);
 const uploading = ref(false);
@@ -49,7 +52,9 @@ const formattedPoints = computed(() => {
   return `${props.challenge.points} point${plural}`
 })
 
+const bucketName = 'photo-submissions'
 
+// TODO: handle multiple file uploads
 const uploadPhoto = async () => {
   if (!file.value) return;
   
@@ -57,8 +62,8 @@ const uploadPhoto = async () => {
 
   try {
     const fileExt = file.value.name.split('.').pop();
-    // todo create fileID based on team, category, challenge
-    const filePath = `challenges/${Date.now()}.${fileExt}`;
+    const teamID = (! teamStore.id) ? 'defaultTeam' : teamStore.id
+    const filePath = `${teamID}/${props.challenge.id}.${fileExt}`;
     
     // Upload to Supabase Storage
     const { data, error } = await supabase.storage
@@ -77,6 +82,14 @@ const uploadPhoto = async () => {
   } finally {
     uploading.value = false;
   }
+
+  const isUploaded = computed(async () => {
+    const teamID = (! teamStore.id) ? 'defaultTeam' : teamStore.id
+    const filePath = `${teamID}/${props.challenge.id}.*`;
+    const { publicUrl } = supabase.storage.from(bucketName).getPublicUrl(filePath);
+
+    return (! publicUrl) ? false : true
+  })
 };
 
 </script>
