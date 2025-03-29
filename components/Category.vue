@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row class="py-2">
       <v-btn 
         @click="handleTransition"
         class="mx-3"
@@ -35,7 +35,7 @@ const handleTransition = () => {
 </script>
 
 <style scoped>
-  h1 {
-    color: #FBDA0C;
-  }
+.v-btn {
+  background-color: #ffcc00;
+}
 </style>
