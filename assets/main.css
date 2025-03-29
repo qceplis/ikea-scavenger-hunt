@@ -27,7 +27,14 @@ body {
 v-card {
     background-color: #ffcc00;
 }
+
 h1 {
+    color: #ffcc00;
+}
+h2 {
+    color: #ffcc00;
+}
+h3 {
     color: #ffcc00;
 }
 

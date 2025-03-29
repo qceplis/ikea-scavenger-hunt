@@ -1,4 +1,5 @@
-<template lang="">
+<template >
+  <h1>{{ props.category.name }}</h1>
   <v-container>
     <GalleryChallenge 
       v-for="challenge in props.category.challenges"
