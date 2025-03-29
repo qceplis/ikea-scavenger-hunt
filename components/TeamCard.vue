@@ -2,6 +2,7 @@
   <v-col >
     <v-card
       :title="teamName"
+      :subtitle="props.teamInfo.members"
     >
       <v-card-actions>
         <v-btn @click="joinTeam">Join</v-btn>
