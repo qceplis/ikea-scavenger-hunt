@@ -66,31 +66,47 @@ const uploadPhoto = async () => {
     const filePath = `${teamID}/${props.challenge.id}.${fileExt}`;
     
     // Upload to Supabase Storage
-    const { data, error } = await supabase.storage
+    const { _, storageError } = await supabase.storage
       .from(bucketName)
-      .upload(filePath, file.value);
+      .upload(filePath, file.value, {
+        upsert: true,
+      });
 
-    if (error) throw error;
+    if (storageError) throw storageError;
 
     // Get public URL
-    const { publicUrl } = supabase.storage.from(bucketName).getPublicUrl(filePath);
-    photoUrl.value = publicUrl;
+    const { data } = supabase.storage.from(bucketName).getPublicUrl(filePath);
+    const myURL = data.publicUrl;
+    photoUrl.value = myURL
+    console.log(myURL)
 
-    emit('uploaded', publicUrl); // Emit uploaded event with URL
+    const { submissionData, error } = await supabase
+      .from('submissions')
+      .insert({
+        challenge_id: props.challenge.id,
+        team_id: teamID,
+        photo_path: myURL
+      })
+
+    if (error) throw error
+
+    // emit('uploaded', publicUrl); // Emit uploaded event with URL
   } catch (error) {
     console.error('Upload failed:', error.message);
   } finally {
     uploading.value = false;
   }
 
-  const isUploaded = computed(async () => {
-    const teamID = (! teamStore.id) ? 'defaultTeam' : teamStore.id
-    const filePath = `${teamID}/${props.challenge.id}.*`;
-    const { publicUrl } = supabase.storage.from(bucketName).getPublicUrl(filePath);
-
-    return (! publicUrl) ? false : true
-  })
+  
 };
+
+const isUploaded = computed(async () => {
+  const teamID = (! teamStore.id) ? 'defaultTeam' : teamStore.id
+  const filePath = `${teamID}/${props.challenge.id}.*`;
+  const { publicUrl } = supabase.storage.from(bucketName).getPublicUrl(filePath);
+
+  return (! publicUrl) ? false : true
+})
 
 </script>
 
