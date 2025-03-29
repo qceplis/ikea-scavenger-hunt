@@ -19,7 +19,8 @@ const props = defineProps({
 
 const teamStore = useTeamStore()
 
-const teamName = computed(() => `Team ${props.teamInfo.id}`)
+const teamName  = computed(() => `Team ${props.teamInfo.id}`)
+const teamColor = computed(() => props.teamInfo.color)
 
 const joinTeam = () => {
   teamStore.id = props.teamInfo.id
@@ -29,6 +30,6 @@ const joinTeam = () => {
 
 <style scoped>
   .v-card {
-    background-color: #FBDA0C;
+    background-color: v-bind(teamColor);
   }
 </style>
