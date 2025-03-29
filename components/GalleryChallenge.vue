@@ -1,13 +1,16 @@
 <template>
-  <h1 class="py-3">{{ props.challenge.title }}</h1>
-  <v-row>
-    <v-carousel 
+  <h2 class="py-3">{{ props.challenge.title }}</h2>
+  <v-row v-show="isCarouselVisible">
+    <v-carousel
       hide-delimiters
       height="400"
       progress="primary"
     >
-      <GallerySubmission />
-      <GallerySubmission />
+      <GallerySubmission 
+        v-for="submission in submissions"
+          :submission="submission"
+          :key="submission.id"
+      />
     </v-carousel>
   </v-row>
 </template>
@@ -21,6 +24,27 @@ const props = defineProps({
   challenge: Object,
   categoryId: Number
 });
+
+const submissions = ref([])
+const isCarouselVisible = ref(false)
+
+async function getSubmissions() {
+  const { data } = await supabase
+    .from('submissions')
+    .select()
+    .eq('challenge_id', props.challenge.id)
+
+  submissions.value = data
+  console.log(data)
+
+  if (submissions.value.length) {
+    isCarouselVisible.value = true
+  }
+}
+
+onMounted(() => {
+  getSubmissions()
+})
 
 </script>
 
