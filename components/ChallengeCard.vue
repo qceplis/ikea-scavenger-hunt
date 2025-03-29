@@ -97,6 +97,6 @@ const uploadPhoto = async () => {
 <style scoped>
   .v-card {
     max-width: 95vw;
-    background-color: #FBDA0C;
+    background-color: #ffcc00;
 }
 </style>
