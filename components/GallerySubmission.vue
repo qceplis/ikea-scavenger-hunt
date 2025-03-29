@@ -1,6 +1,6 @@
-<template lang="">
+<template>
   <v-carousel-item 
-  src="https://cdn.vuetifyjs.com/images/cards/hotel.jpg"
+    :src="props.submission.photo_path"
     cover
   >
   </v-carousel-item>
@@ -9,8 +9,6 @@
 const props = defineProps({
   submission: Object
 });
-
-const photoPath = computed(() => props.submssion.photo_path)
 
 </script>
 <style >

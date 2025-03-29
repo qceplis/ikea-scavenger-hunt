@@ -16,6 +16,12 @@
 </template>
 
 <script setup>
+/*
+v-for="submission in submissions"
+          :submission="submission"
+          :key="submission.id"
+*/
+
 import { GallerySubmission } from '#components';
 
 import { supabase } from '@/lib/supabase'
@@ -35,7 +41,6 @@ async function getSubmissions() {
     .eq('challenge_id', props.challenge.id)
 
   submissions.value = data
-  console.log(data)
 
   if (submissions.value.length) {
     isCarouselVisible.value = true
