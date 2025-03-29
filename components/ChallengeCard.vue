@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { supabase } from '@/lib/supabase'
+import { useSupabase } from '@/lib/supabase'
 import { useTeamStore } from '@/stores/team'
 
 const props = defineProps({
@@ -41,6 +41,7 @@ const props = defineProps({
   categoryId: Number
 });
 
+const supabase = useSupabase()
 const teamStore = useTeamStore()
 
 const file = ref(null);

@@ -16,15 +16,11 @@
 </template>
 
 <script setup>
-/*
-v-for="submission in submissions"
-          :submission="submission"
-          :key="submission.id"
-*/
 
 import { GallerySubmission } from '#components';
 
-import { supabase } from '@/lib/supabase'
+import { useSupabase } from '@/lib/supabase'
+const supabase = useSupabase()
 
 const props = defineProps({
   challenge: Object,
