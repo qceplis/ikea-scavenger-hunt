@@ -37,7 +37,8 @@ import { supabase } from '@/lib/supabase'
 import { useTeamStore } from '@/stores/team'
 
 const props = defineProps({
-  challenge: Object
+  challenge: Object,
+  categoryId: Number
 });
 
 const teamStore = useTeamStore()
@@ -78,11 +79,11 @@ const uploadPhoto = async () => {
     const { data } = supabase.storage.from(bucketName).getPublicUrl(filePath);
     const myURL = data.publicUrl;
     photoUrl.value = myURL
-    console.log(myURL)
 
     const { submissionData, error } = await supabase
       .from('submissions')
       .insert({
+        category_id: props.categoryId,
         challenge_id: props.challenge.id,
         team_id: teamID,
         photo_path: myURL

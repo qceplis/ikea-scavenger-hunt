@@ -196,7 +196,7 @@ export const challengeData = [
   },
   {
     id: 6,
-    name: "Products beginning with letters of the alphabet",
+    name: "Begins with",
     challenges: [
       {
         id: 'A',

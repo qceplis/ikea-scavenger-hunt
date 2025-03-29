@@ -12,6 +12,7 @@
       transition="fade-transition"
       v-for="challenge in props.category.challenges"
         :challenge="challenge"
+        :categoryId="props.category.id"
         :key="challenge.id"
     />
   </v-container>
