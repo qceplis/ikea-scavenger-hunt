@@ -4,25 +4,20 @@
       <h1 class="px-3">IKEAn't Stop!!!</h1>
     </v-row>
     <v-row>
-      <v-col cols="4">
-        <NuxtLink to="/"><v-btn>Join Team</v-btn></NuxtLink>
-      </v-col>
-      <v-col cols="4">
-        <NuxtLink to="/challenges"><v-btn>Challenges</v-btn></NuxtLink>
-      </v-col>
-      <v-col cols="4">
-        <NuxtLink to="/gallery"><v-btn>Gallery</v-btn></NuxtLink>
-      </v-col>
+      <NavButton to="/">Join Team</NavButton>
+      <NavButton to="/challenges">Challenges</NavButton>
+      <NavButton to="/gallery">Gallery</NavButton>
     </v-row>
   </v-container>
   <slot />
 </template>
 
+<script>
+import { NavButton } from '#components'
+</script>
+
 <style scoped>
 h1 {
   font-size: 48px;
-}
-.v-btn {
-  background-color: #ffcc00;
 }
 </style>

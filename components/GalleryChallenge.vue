@@ -3,8 +3,8 @@
   <v-row v-show="isCarouselVisible">
     <v-carousel
       hide-delimiters
+      :show-arrows="false"
       height="400"
-      progress="primary"
     >
       <GallerySubmission 
         v-for="submission in submissions"
