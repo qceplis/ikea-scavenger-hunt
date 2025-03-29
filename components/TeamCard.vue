@@ -14,7 +14,7 @@
 import { useTeamStore } from '@/stores/team'
 
 const props = defineProps({
-  teamInfo: Object
+  teamInfo: Object 
 });
 
 const teamStore = useTeamStore()
